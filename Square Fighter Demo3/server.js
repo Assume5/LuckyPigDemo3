@@ -3,12 +3,10 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io')
 let server = app.listen(8081, function(){
-    console.log('listening on port 8081,');
+    console.log('listening on port 8081');
 });
 let io = socket(server)
-io.on('connection', function(socket){
-  console.log(`${socket.id} is connected`);
-});
+
 
 let players = {}; //store players
 //random food location
@@ -28,7 +26,7 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  console.log(socket.id + ' has connected');
+  console.log(`${socket.id} is connected`);
 // create player and add it to our players object
 players[socket.id] = {
   x: 800*Math.random(),
@@ -49,7 +47,7 @@ socket.broadcast.emit('registerNewPlayer', players[socket.id]);
 
 // remove players when player disconnect
 socket.on('disconnect', function () {
-  console.log(socket.id+' has disconnected');
+  console.log(`${socket.id} is disconnect`);
   // remove player from player object
   delete players[socket.id];
   // emit a message to our player object to remove this player
