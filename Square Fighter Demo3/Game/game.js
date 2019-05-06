@@ -5,8 +5,8 @@ var config = {
 	type: Phaser.AUTO,
 	backgroundColor:"#eee",		//set background color of canvas
   parent: 'LuckyPig',//group name
-  width: 1600,
-	height: 800,
+  width: 800,
+	height: 600,
   physics: {
     default: 'arcade',
     arcade: {
@@ -34,9 +34,9 @@ function preload() {
 function create() {
 	var self = this;
 	this.socket = io();
-	this.newPlayers=this.physics.add.group() //store newPlayers
+	this.newPlayers=this.physics.add.group() //store newPlayers contains physics
 	this.socket.on('register', function (players) {
-	  Object.keys(players).forEach(function (id) {
+	  Object.keys(players).forEach(function (id) { //loop get their keys
 		if (players[id].socketId === self.socket.id) {
 			registerPlayer(self, players[id]);//register a player
 		}else{
@@ -77,8 +77,8 @@ function create() {
     self.food = self.physics.add.image(foodLocation.x, foodLocation.y, 'food'); //add sprite
     self.physics.add.overlap(self.player, self.food, function () { //if food are overlap by players
       this.physics.world.colliders.destroy();
-      this.socket.emit('foodCollected');
-      self.food.destroy();
+      this.socket.emit('foodCollected'); //call back function
+      self.food.destroy();//delete from food group
     }, null, self);
 
   });
@@ -112,7 +112,7 @@ function update() {
     let x = this.player.x;
     let y = this.player.y;
     if (this.player.oldData && (x !== this.player.oldData.x || y !== this.player.oldData.y)) {
-      this.socket.emit('UpdateMovement', {
+      this.socket.emit('UpdateMovement', { //call back function update their position
         x: this.player.x,
         y: this.player.y,
       });

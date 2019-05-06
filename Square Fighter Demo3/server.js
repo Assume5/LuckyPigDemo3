@@ -29,9 +29,10 @@ io.on('connection', function (socket) {
   console.log(`${socket.id} is connected`);
 // create player and add it to our players object
 players[socket.id] = {
+  //assign player into random positions
   x: 800*Math.random(),
   y: 600*Math.random(),
-  socketId: socket.id,
+  socketId: socket.id, //player username (ID)
   team: (Math.floor(Math.random() * 2) == 0) ? 'black' : 'blue' //team 
 };
 // send the player to the newplayers
@@ -40,10 +41,10 @@ socket.emit('register', players);
 
 socket.broadcast.emit('registerNewPlayer', players[socket.id]);
     // event food location to  player
-  socket.emit('foodLocation', food);
+socket.emit('foodLocation', food);
 
     // event the current scores
-    socket.emit('updateScore', scores);
+socket.emit('updateScore', scores);
 
 // remove players when player disconnect
 socket.on('disconnect', function () {
@@ -74,9 +75,9 @@ socket.on('foodCollected', function () {
     scores.blue += 5;
 }
 //add new food location
-  food.x = Math.random() * 700;
-  food.y =  Math.random() * 500;
-  io.emit('foodLocation', food);
-  io.emit('updateScore', scores);
+  food.x = Math.random() * 800;
+  food.y =  Math.random() * 600;
+  io.emit('foodLocation', food);//create new food
+  io.emit('updateScore', scores); //update score
 });
 });
