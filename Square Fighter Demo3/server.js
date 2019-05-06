@@ -7,7 +7,6 @@ let server = app.listen(8081, function(){
 });
 let io = socket(server)
 
-
 let players = {}; //store players
 //random food location
 let food = {
