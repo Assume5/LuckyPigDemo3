@@ -1,0 +1,20 @@
+{
+    "name": "CSE116P",
+    "version": "1.0.0",
+    "description": "",
+    "main": "game.js",
+    "directories": {
+      "lib": "lib",
+      "test": "test"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "mocha": "^6.0.2"
+    },
+    "scripts": {
+      "test": "mocha"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }

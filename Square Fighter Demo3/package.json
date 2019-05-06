@@ -1,0 +1,14 @@
+{
+  "name": "project2",
+  "version": "0.0.0",
+  "description": "Project2",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.2.0",
+    "socketio": "latest"
+  }
+}
