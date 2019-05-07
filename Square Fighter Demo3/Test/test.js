@@ -19,7 +19,7 @@ describe('speed',function(){
 //   });
 // }); 
 describe('score',function(){
-  it('if player eat the normal food score should add 1',function(){
+  it('if player eat the normal food score should add 5',function(){
     let result=test.TestscoreNormal(0);
     assert.equal(result,5);
   });
