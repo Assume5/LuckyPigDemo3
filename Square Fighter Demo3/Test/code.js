@@ -32,22 +32,22 @@ module.exports={
 	TestSpeed:function(speed){
 		return speed
 	},
-	TestsizeNormal:function(sizeX,sizeY){		
-		sizeX+=0.02;
-		sizeY+=0.02;
-		return ([sizeX,sizeY])
-	},
-	TestsizeSuper:function(sizeX,sizeY){
-		sizeX+=0.2;
-		sizeY+=0.2;
-		return([sizeX,sizeY]);
-	},
+	// TestsizeNormal:function(sizeX,sizeY){		
+	// 	sizeX+=0.02;
+	// 	sizeY+=0.02;
+	// 	return ([sizeX,sizeY])
+	// },
+	// TestsizeSuper:function(sizeX,sizeY){
+	// 	sizeX+=0.2;
+	// 	sizeY+=0.2;
+	// 	return([sizeX,sizeY]);
+	// },
 	TestscoreNormal:function(score){
-		return score+=1;
+		return score+=5;
 	},
-	TestscoreSuper:function(score){
-		return score+=5
-	},
+	// TestscoreSuper:function(score){
+	// 	return score+=5
+	// },
 	TesteatFood:function(foodArray,place){
 		for( let i = 0; i < foodArray.length; i++){ 
 			if ( foodArray[i] === place) {
@@ -56,14 +56,14 @@ module.exports={
 		 }
 		return foodArray.length;
 	},
-	TesteatSuperFood:function(superFoodArray,place){
-		for( let i = 0; i < superFoodArray.length; i++){ 
-			if ( superFoodArray[i] === place) {
-				superFoodArray.splice(i, 1); 
-			}
-		 }
-		return superFoodArray.length;
-	},
+	// TesteatSuperFood:function(superFoodArray,place){
+	// 	for( let i = 0; i < superFoodArray.length; i++){ 
+	// 		if ( superFoodArray[i] === place) {
+	// 			superFoodArray.splice(i, 1); 
+	// 		}
+	// 	 }
+	// 	return superFoodArray.length;
+	// },
 	TesteatNormalFoodRemain:function(normal,place){
 		for( let i = 0; i < normal.length; i++){ 
 			if ( normal[i] === place) {
@@ -72,12 +72,12 @@ module.exports={
 		 }
 		return normal;
 	},
-	TesteatSuperFoodRemain:function(superfood,place){
-		for( let i = 0; i < superfood.length; i++){ 
-			if ( superfood[i] === place) {
-				superfood.splice(i, 1); 
-			}
-		 }
-		return superfood;
-	}
+	// TesteatSuperFoodRemain:function(superfood,place){
+	// 	for( let i = 0; i < superfood.length; i++){ 
+	// 		if ( superfood[i] === place) {
+	// 			superfood.splice(i, 1); 
+	// 		}
+	// 	 }
+	// 	return superfood;
+	// }
 }
