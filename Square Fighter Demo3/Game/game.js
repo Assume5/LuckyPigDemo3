@@ -65,11 +65,13 @@ function create() {
 	//set team score text
 	this.blueScoreText = this.add.text(16, 16).setScrollFactor(0).setFontSize(25).setColor('#0000FF');;
 	this.blackScoreText = this.add.text(16, 48).setScrollFactor(0).setFontSize(25).setColor('000000');;
+	this.topPlayerText=this.add.text(500,16).setScrollFactor(0).setFontSize(15).setColor("000000")
 
 	//update score
-  this.socket.on('updateScore', function (scores) {
-    self.blueScoreText.setText('Blue Team Score: ' + scores.blue);
-    self.blackScoreText.setText('Black Team Score: ' + scores.black);
+  this.socket.on('updateScore', function (Info) {
+    self.blueScoreText.setText('Blue Team Score: ' + Info.scores.blue);
+		self.blackScoreText.setText('Black Team Score: ' + Info.scores.black);
+		self.topPlayerText.setText("Top Player: "+ Info.highScore.socketId+ "\n Score: "+Info.highScore.score)
 	});
 	//crate food location
 	this.socket.on('foodLocation', function (foodLocation) {
@@ -81,7 +83,7 @@ function create() {
       self.food.destroy();//delete from food group
     }, null, self);
 
-  });
+	});
 	}
 	
 

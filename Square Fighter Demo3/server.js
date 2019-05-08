@@ -6,7 +6,6 @@ let server = app.listen(8081, function(){
     console.log('listening on port 8081');
 });
 let io = socket(server)
-
 let players = {}; //store players
 //random food location
 let food = {
@@ -16,8 +15,12 @@ let food = {
 //socres for black and blue team
 let scores = {
   blue: 0,
-  black: 0
+  black: 0,
 };
+let highScore={
+  socketId:socket.id,
+  score:0
+}
 app.use(express.static(__dirname + '/Game'));
 
 app.get('/', function (req, res) {
@@ -32,7 +35,8 @@ players[socket.id] = {
   x: 800*Math.random(),
   y: 600*Math.random(),
   socketId: socket.id, //player username (ID)
-  team: (Math.floor(Math.random() * 2) == 0) ? 'black' : 'blue' //team 
+  team: (Math.floor(Math.random() * 2) == 0) ? 'black' : 'blue', //team
+  score:0 
 };
 // send the player to the newplayers
 socket.emit('register', players);
@@ -43,8 +47,7 @@ socket.broadcast.emit('registerNewPlayer', players[socket.id]);
 socket.emit('foodLocation', food);
 
     // event the current scores
-socket.emit('updateScore', scores);
-
+socket.emit('updateScore', {scores,highScore});
 // remove players when player disconnect
 socket.on('disconnect', function () {
   console.log(`${socket.id} is disconnect`);
@@ -62,12 +65,12 @@ socket.on('UpdateMovement', function (movement) {
   // emit a message to all players about the player that moved
   socket.broadcast.emit('UpdateMoves', players[socket.id]);
 });
-
 socket.on('foodCollected', function () {
   var date = new Date().toISOString();
   console.log(date); //event time
 
   // updateScore
+  players[socket.id].score+=1
   if (players[socket.id].team === 'black') {
     scores.black += 5;
 } else {
@@ -76,7 +79,17 @@ socket.on('foodCollected', function () {
 //add new food location
   food.x = Math.random() * 800;
   food.y =  Math.random() * 600;
+  highScore.socketId=players[Object.keys(players)[0]].socketId
+  highScore.score=players[Object.keys(players)[0]].score
+  let highScores=players[Object.keys(players)[0]].score
+  for(let element in players){
+    if(highScores<players[element].score){
+      highScore.socketId=element
+      highScore.score=players[element].score
+    }
+  }
+  console.log(highScore)
   io.emit('foodLocation', food);//create new food
-  io.emit('updateScore', scores); //update score
+  io.emit('updateScore', {scores,highScore}); //update score
 });
 });
