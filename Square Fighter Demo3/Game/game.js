@@ -54,7 +54,7 @@ function create() {
       }
     });
 	});
-  this.socket.on('UpdateMoves', function (playerInfo) {
+  this.socket.on('positionUpdate', function (playerInfo) {
     self.newPlayers.getChildren().forEach(function (players) {
       if (playerInfo.socketId === players.socketId) {
 				players.setPosition(playerInfo.x, playerInfo.y);//will update player movement
@@ -114,7 +114,7 @@ function update() {
     let x = this.player.x;
     let y = this.player.y;
     if (this.player.oldData && (x !== this.player.oldData.x || y !== this.player.oldData.y)) {
-      this.socket.emit('UpdateMovement', { //call back function update their position
+      this.socket.emit('updatePosition', { //call back function update their position
         x: this.player.x,
         y: this.player.y,
       });

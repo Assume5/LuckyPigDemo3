@@ -58,12 +58,12 @@ socket.on('disconnect', function () {
 });
 
 // Update player movement
-socket.on('UpdateMovement', function (movement) {
+socket.on('updatePosition', function (movement) {
   //update data
   players[socket.id].x = movement.x;
   players[socket.id].y = movement.y;
   // emit a message to all players about the player that moved
-  socket.broadcast.emit('UpdateMoves', players[socket.id]);
+  socket.broadcast.emit('positionUpdate', players[socket.id]);
 });
 socket.on('foodCollected', function () {
   var date = new Date().toISOString();
