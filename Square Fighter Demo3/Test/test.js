@@ -1,3 +1,7 @@
+//TEST1
+// "devDependencies": {
+//   "mocha": "^6.0.2"
+// },
 const assert = require('assert');
 const test = require("../test/code");
 console.log(test);
@@ -57,3 +61,53 @@ describe('A player enter',function(){
     assert.equal(result,"A user connected")
   })
 });
+
+//TEST2
+  // "devDependencies": {
+  //   "chai": "*",
+  //   "mocha": "*"
+  // },
+//   'use strict'
+
+// var expect = require('chai').expect
+//   , server = require('../server')
+//   , io = require('socket.io-client')
+//   , ioOptions = { 
+//       transports: ['websocket']
+//     , forceNew: true
+//     , reconnection: false
+//   }
+//   , sender
+//   , receiver
+//   , connect='A user connect'
+
+
+
+// describe('Chat Events', function(){
+//   beforeEach(function(done){
+    
+//     // start the io server
+//     server.start()
+//     // connect two io clients
+//     sender = io('http://localhost:8081/', ioOptions)
+//     receiver = io('http://localhost:8081/', ioOptions)
+//     sender.emit('foodLocation',{x:Math.random()*800,y:Math.random()*600})
+//     // finish beforeEach setup
+//     done()
+//   })
+//   afterEach(function(done){
+    
+//     // disconnect io clients after each test
+//     sender.disconnect()
+//     receiver.disconnect()
+//     done()
+//   })
+//   // describe('Food Events', function(){
+//   //   it('When a user has connect.', function(){
+//   //     answer='A user connect'
+//   //     expect(answer).to.equal(connect);
+//   //     done();
+//   //   })
+//   // })
+// });
+
