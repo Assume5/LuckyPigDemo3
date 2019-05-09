@@ -72,6 +72,9 @@ module.exports={
 		 }
 		return normal;
 	},
+	Testenter:function(){
+		return "A user connected"
+	}
 	// TesteatSuperFoodRemain:function(superfood,place){
 	// 	for( let i = 0; i < superfood.length; i++){ 
 	// 		if ( superfood[i] === place) {

@@ -51,3 +51,9 @@ describe('food',function(){
   //       assert.deepEqual(result,[0,1,2,4]);
   //     });
 });
+describe('A player enter',function(){
+  it("if user join the room should display user connected",function(){
+    let result=test.Testenter()
+    assert.equal(result,"A user connected")
+  })
+});
