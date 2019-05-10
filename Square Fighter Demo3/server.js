@@ -36,20 +36,20 @@ players[socket.id] = {
   y: 600*Math.random(),
   socketId: socket.id, //player username (ID)
   team: (Math.floor(Math.random() * 2) == 0) ? 'black' : 'blue', //team
-  score:0 
+  score:0
 };
 // send the player to the newplayers
 socket.emit('register', players);
 // update all players of the newplayers
 
 socket.broadcast.emit('registerNewPlayer', players[socket.id]);
-    // event food location to  player
-socket.emit('foodLocation', food);
+    // emit food location to  player
+  socket.emit('foodLocation', food);
 
-    // event the current scores
-socket.emit('updateScore', {scores,highScore});
+    // emit the current scores
+  socket.emit('updateScore', {scores,highScore});
 // remove players when player disconnect
-socket.on('disconnect', function () {
+  socket.on('disconnect', function () {
   console.log(`${socket.id} is disconnect`);
   // remove player from player object
   delete players[socket.id];
@@ -58,17 +58,14 @@ socket.on('disconnect', function () {
 });
 
 // Update player movement
-socket.on('updatePosition', function (movement) {
+socket.on('updatePosition', function (position) {
   //update data
-  players[socket.id].x = movement.x;
-  players[socket.id].y = movement.y;
+  players[socket.id].x = position.x;
+  players[socket.id].y = position.y;
   // emit a message to all players about the player that moved
   socket.broadcast.emit('positionUpdate', players[socket.id]);
 });
 socket.on('foodCollected', function () {
-  var date = new Date().toISOString();
-  console.log(date); //event time
-
   // updateScore
   players[socket.id].score+=1
   if (players[socket.id].team === 'black') {
