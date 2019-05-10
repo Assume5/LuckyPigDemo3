@@ -131,7 +131,7 @@ function registerPlayer(self, info) {
 	self.player = self.physics.add.sprite(info.x, info.y, 'player')
 	if(info.team ==='black') self.player.setTint(0xff0000);	//set player to black
 	self.player.body.collideWorldBounds=true; //will not go over walls
-	self.cameras.main.startFollow(self.player); //cameras follow players only if there will be lot of user.
+	self.cameras.main.startFollow(self.player); //cameras follow players
 
 }
 function registerNewPlayer(self, info) {
