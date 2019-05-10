@@ -29,7 +29,7 @@ function preload() {
 		this.load.image('superFood', 'asset/black-square.png');
 		this.load.image('goldenFood','asset/gold-square.png')	
 		this.cursors = this.input.keyboard.createCursorKeys(); //let user control
-
+		//this.physics.world.setBounds(0, 0, 6666, 6666);//World size
 }
 function create() {
 	var self = this;
@@ -78,7 +78,7 @@ function create() {
     if (self.food) self.food.destroy(); //delete from food group
     self.food = self.physics.add.image(foodLocation.x, foodLocation.y, 'food'); //add sprite
     self.physics.add.overlap(self.player, self.food, function () { //if food are overlap by players
-      this.physics.world.colliders.destroy();
+      //this.physics.world.colliders.destroy();
       this.socket.emit('foodCollected'); //call back function
       self.food.destroy();//delete from food group
     }, null, self);
@@ -131,7 +131,7 @@ function registerPlayer(self, info) {
 	self.player = self.physics.add.sprite(info.x, info.y, 'player')
 	if(info.team ==='black') self.player.setTint(0xff0000);	//set player to black
 	self.player.body.collideWorldBounds=true; //will not go over walls
-	self.cameras.main.startFollow(self.player); //cameras follow players
+	//self.cameras.main.startFollow(self.player); //cameras follow players only if there will be lot of user.
 
 }
 function registerNewPlayer(self, info) {
